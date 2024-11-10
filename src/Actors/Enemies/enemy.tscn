@@ -1,0 +1,133 @@
+[gd_scene load_steps=18 format=3 uid="uid://dombepltbnw2c"]
+
+[ext_resource type="Script" path="res://src/Actors/Enemies/enemy.gd" id="1_2n8tm"]
+[ext_resource type="PackedScene" uid="uid://bpn6foajxpcc3" path="res://src/Environment/damage_zone.tscn" id="2_giyqv"]
+[ext_resource type="Texture2D" uid="uid://c5ms37xuq3631" path="res://assets/2 Owlet_Monster/Owlet_Monster_Idle_4.png" id="3_wg4m6"]
+[ext_resource type="Texture2D" uid="uid://30woiad7whhc" path="res://assets/2 Owlet_Monster/Owlet_Monster_Walk_6.png" id="4_vsdl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsce3"]
+size = Vector2(12, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki36a"]
+atlas = ExtResource("3_wg4m6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl464"]
+atlas = ExtResource("3_wg4m6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fakuv"]
+atlas = ExtResource("3_wg4m6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se246"]
+atlas = ExtResource("3_wg4m6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oah82"]
+atlas = ExtResource("4_vsdl6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dw4p"]
+atlas = ExtResource("4_vsdl6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7qyy"]
+atlas = ExtResource("4_vsdl6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n5mg"]
+atlas = ExtResource("4_vsdl6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr7uo"]
+atlas = ExtResource("4_vsdl6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udlr1"]
+atlas = ExtResource("4_vsdl6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lq4hh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki36a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl464")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fakuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se246")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oah82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dw4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7qyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n5mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr7uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udlr1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohati"]
+size = Vector2(10, 20)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+collision_priority = 2.0
+script = ExtResource("1_2n8tm")
+
+[node name="damage_zone" parent="." instance=ExtResource("2_giyqv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_wsce3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_lq4hh")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ohati")
+
+[node name="RayCastRight" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(16, 2)
+collision_mask = 2
+
+[node name="RayCastLeft" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(-16, 2)
+collision_mask = 2
+
+[node name="RayCastBottomRight" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(16, 15)
+collision_mask = 2
+
+[node name="RayCastBottomLeft" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(-16, 15)
+collision_mask = 2

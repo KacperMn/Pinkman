@@ -1,0 +1,204 @@
+[gd_scene load_steps=19 format=3 uid="uid://dmekvxpdivfpg"]
+
+[ext_resource type="PackedScene" uid="uid://dypgm7qybrtkk" path="res://src/Environment/tile_map.tscn" id="1_2g8w6"]
+[ext_resource type="TileSet" uid="uid://qqojp0xue17n" path="res://src/Environment/tile_set.tres" id="2_tgni7"]
+[ext_resource type="PackedScene" uid="uid://c6s50hk0fjoj0" path="res://src/Actors/Player/Player.tscn" id="4_0h5s6"]
+[ext_resource type="PackedScene" uid="uid://c67pm4xtmukx4" path="res://src/Environment/next_level.tscn" id="4_773nl"]
+[ext_resource type="PackedScene" uid="uid://5fv2bt6educl" path="res://src/Environment/Items/strawberry.tscn" id="5_fixwk"]
+[ext_resource type="PackedScene" uid="uid://dombepltbnw2c" path="res://src/Actors/Enemies/enemy.tscn" id="6_0dnlu"]
+[ext_resource type="PackedScene" uid="uid://cr1adebcd1oud" path="res://src/Environment/platfrom.tscn" id="7_ho756"]
+[ext_resource type="PackedScene" uid="uid://bg1icpdk81pa4" path="res://src/Environment/killzone.tscn" id="8_5f0ah"]
+[ext_resource type="PackedScene" uid="uid://bpn6foajxpcc3" path="res://src/Environment/damage_zone.tscn" id="9_a5m3m"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ay6sp"]
+
+[sub_resource type="Animation" id="Animation_gwu8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(809, 293)]
+}
+
+[sub_resource type="Animation" id="Animation_ovqc4"]
+resource_name = "platform_horizontal"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(809, 293), Vector2(679, 293)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsf7a"]
+_data = {
+"RESET": SubResource("Animation_gwu8s"),
+"platform_horizontal": SubResource("Animation_ovqc4")
+}
+
+[sub_resource type="Animation" id="Animation_dk5v7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(184, 229)]
+}
+
+[sub_resource type="Animation" id="Animation_0ywy0"]
+resource_name = "platform_vertical"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(184, 229), Vector2(184, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nuavp"]
+_data = {
+"RESET": SubResource("Animation_dk5v7"),
+"platform_vertical": SubResource("Animation_0ywy0")
+}
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d6w83"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tfuoj"]
+
+[node name="Level_1" type="Node2D"]
+material = SubResource("CanvasItemMaterial_ay6sp")
+metadata/_edit_horizontal_guides_ = [64.0]
+
+[node name="Gamemanager" type="Node" parent="."]
+
+[node name="Deathscreen" type="CanvasModulate" parent="Gamemanager"]
+visible = false
+color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="TileMap" parent="." instance=ExtResource("1_2g8w6")]
+tile_set = ExtResource("2_tgni7")
+
+[node name="Player" parent="." instance=ExtResource("4_0h5s6")]
+position = Vector2(160, 576)
+
+[node name="Camera2D3" type="Camera2D" parent="Player"]
+texture_filter = 1
+offset = Vector2(50, -50)
+zoom = Vector2(2, 2)
+limit_left = -35
+limit_top = 0
+limit_right = 1102
+limit_bottom = 750
+position_smoothing_enabled = true
+
+[node name="Area2D" parent="." instance=ExtResource("4_773nl")]
+position = Vector2(109, 96)
+
+[node name="Strawberries" type="Node" parent="."]
+
+[node name="strawberry" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(288, 512)
+
+[node name="strawberry2" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(456, 496)
+
+[node name="strawberry3" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(800, 464)
+
+[node name="strawberry4" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(1096, 480)
+
+[node name="strawberry5" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(888, 564)
+
+[node name="strawberry6" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(536, 560)
+
+[node name="strawberry7" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(1104, 560)
+
+[node name="strawberry8" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(880, 368)
+
+[node name="strawberry9" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(720, 376)
+
+[node name="strawberry10" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(208, 256)
+
+[node name="strawberry11" parent="Strawberries" instance=ExtResource("5_fixwk")]
+position = Vector2(56, 80)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("6_0dnlu")]
+position = Vector2(648, 576)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("6_0dnlu")]
+position = Vector2(904, 496)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("6_0dnlu")]
+position = Vector2(328, 266)
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Platfrom" parent="Platforms" instance=ExtResource("7_ho756")]
+position = Vector2(809, 293)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platfrom"]
+libraries = {
+"": SubResource("AnimationLibrary_jsf7a")
+}
+autoplay = "platform_horizontal"
+
+[node name="Platfrom2" parent="Platforms" instance=ExtResource("7_ho756")]
+position = Vector2(184, 229)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platfrom2"]
+libraries = {
+"": SubResource("AnimationLibrary_nuavp")
+}
+autoplay = "platform_vertical"
+
+[node name="World Borders" type="Node" parent="."]
+
+[node name="killzone" parent="World Borders" instance=ExtResource("8_5f0ah")]
+position = Vector2(96, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Borders/killzone"]
+position = Vector2(456, 752)
+scale = Vector2(15, 1)
+shape = SubResource("WorldBoundaryShape2D_d6w83")
+
+[node name="damage_zone" parent="." instance=ExtResource("9_a5m3m")]
+position = Vector2(321, 508)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
+shape = SubResource("CircleShape2D_tfuoj")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr1adebcd1oud"]
+
+[ext_resource type="Texture2D" uid="uid://cny4n7arb4w1n" path="res://assets/Seasonal Tilesets/3 - Tropics/Tropics_entities (16 x 16).png" id="1_863c7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a364x"]
+size = Vector2(74, 6)
+
+[node name="Platfrom" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a364x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.65403e-06, 2.98023e-08)
+scale = Vector2(1, 1.2)
+texture = ExtResource("1_863c7")
+region_enabled = true
+region_rect = Rect2(179, 32, 74, 5)

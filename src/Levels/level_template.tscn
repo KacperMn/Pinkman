@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxvnf8g2eg6u0"]
+
+[ext_resource type="TileSet" uid="uid://qqojp0xue17n" path="res://src/Environment/tile_set.tres" id="1_5dgku"]
+[ext_resource type="PackedScene" uid="uid://c6s50hk0fjoj0" path="res://src/Actors/Player/Player.tscn" id="2_rgfor"]
+
+[node name="level_template" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_5dgku")
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("2_rgfor")]

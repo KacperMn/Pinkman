@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://5fv2bt6educl"]
+
+[ext_resource type="Texture2D" uid="uid://gn0pe8ddg7lv" path="res://assets/strawberry.png" id="1_6ycag"]
+[ext_resource type="Script" path="res://src/Environment/Items/strawberry.gd" id="1_681c7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_70fc4"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_cvota"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_mkopn"]
+resource_name = "item_idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.590644, 3.3209),
+"update": 0,
+"values": [Vector2(0, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_868i0"]
+_data = {
+"RESET": SubResource("Animation_cvota"),
+"item_idle": SubResource("Animation_mkopn")
+}
+
+[node name="strawberry" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_681c7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_70fc4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 3)
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("1_6ycag")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_868i0")
+}
+autoplay = "item_idle"
+speed_scale = -1.667
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

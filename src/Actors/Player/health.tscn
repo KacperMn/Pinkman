@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4e26sijsi6pv"]
+
+[ext_resource type="Texture2D" uid="uid://b336v1lfkl2yv" path="res://assets/HealthUI.png" id="1_s4f02"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp0gh"]
+atlas = ExtResource("1_s4f02")
+region = Rect2(0, 66, 33, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6n6r"]
+atlas = ExtResource("1_s4f02")
+region = Rect2(0, 44, 33, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0372"]
+atlas = ExtResource("1_s4f02")
+region = Rect2(0, 22, 33, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwefe"]
+atlas = ExtResource("1_s4f02")
+region = Rect2(0, 0, 33, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0y0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp0gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6n6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0372")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwefe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_r0y0p")
+frame = 3
+frame_progress = 0.218131
